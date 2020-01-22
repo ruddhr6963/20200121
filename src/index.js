@@ -1,42 +1,48 @@
-// 변수에 함수를 저장하는 방법
-// 1.
-const C = function() {
-  console.log("Hello world");
-};
+// 콜백함수 : 순서대로 동작하기 위해서 사용
+// 자바스크립트 : 싱글스레드 비동기
 
-C();
-
-// 2. Unknown-Function : 이름없는 함수
-function Foo() {
-  return function() {
-    console.log("I am Return Func");
-  };
+// 콜백함수
+const d = callback => {
+  console.log(":a");
+  return callback;
 }
 
-const F = Foo();
+d();
 
-F();
+// array helper function 클래스
+// 1. map(item, index) : 모든 요소마다 특정한 일을 해서 결과를 만들어 내는 것
+//                     : 필요한 매개변수만 사용
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+for(var i = 0; i < 10; i++){
+  arr[i] = i + 1;
+}
 
-// 3. array Function
-//    함수 = 매개변수 + 리턴
-//    const A = (매개변수) => {리턴}
-// 1)
-const B = error => {
-  console.log(error);
-};
+const mappedArr = arr.map(item => item + 1)
+console.log(mappedArr);
 
-B("ayayaya");
-// -> "ayayaya" 가 매개변수 error 값으로 들어감
+// 2. reduce : 모든 요소마다 특정한 일을 해서 결과를 만들어 내는 것
+const reducedArr = arr.reduce((totalVal, curVal) => totalVal + curVal);
+console.log(reducedArr);
 
-// 2) 매개변수가 1개일 경우에는 () 생략가능
-//    return이 간단할 경우에는 return, {} 생략가능
-const BB = error => {
-  return "ERROR MSG: " + error;
-};
+//const totalVal = 0;
+//for(var j = 0; j < arr.length; j++){
+//  totalVal += arr[j];
+//}
 
-BB("ayayaya");
+// 3. filter
+const filterArr = arr.filter(item => item % 2 === 0);
+console.log(filterArr);
 
-// 3) 2) 코드를 한 줄로 표현 가능
-const BBB = error => "ERROR MSG: " + error;
+//const NewArr = [];
+//for(var i = 0; i < arr.length; i++){
+//  if(arr[i] % 2 == 0)
+//    NewArr.push( arr[i] );
+//}
 
-BBB("ayayaya");
+// 홀수인 값을 모두 더하세요
+const arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const sumArr = arr2.filter(item => item % 2 === 1 );
+const totalArr = sumArr.reduce((totalVal, curVal) => totalVal + curVal);
+
+console.log(totalArr);
